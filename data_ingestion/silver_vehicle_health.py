@@ -1,24 +1,51 @@
-# databricks/silver/vehicle_health_features.py
+from pyspark.sql.functions import avg, min, max, count, col
 
-from pyspark.sql.functions import avg, col, min, max
-
-df = spark.table("lakehouse_eat_catalog.bronze.vehicle_telemetry")
-
-df_trip_info = spark.table("lakehouse_eat_catalog.bronze.vehicle_trips")
-
-silver_vehicle_prop = df.groupBy("vehicle_id").agg(
-
-    avg("battery_health").alias("avg_battery_health")
+# Bronze tables
+df_telemetry = spark.table(
+    "lakehouse_eat_catalog.bronze.vehicle_telemetry"
 )
 
-silver_trip_info = df.groupBy("vehicle_id").agg(
-    avg("avg_speed").alias("vehicle_avg_speed"),
-    min("brake_events").alias("min_brake_events"),
-    max("brake_events").alias("max_brake_events"),
-    avg("fuel_used").alias("avg_fuel_used"),
-    avg("engine_temp").alias("avg_engine_temp")
-
+df_trips = spark.table(
+    "lakehouse_eat_catalog.bronze.vehicle_trips"
 )
-df_with_avg = silver_vehicle_prop.join(df_trip_info, on="vehicle_id", how="left")
 
-df_with_avg.write.mode("overwrite").saveAsTable("lakehouse_eat_catalog.silver.vehicle_health_features")
+# -----------------------------------
+# Telemetry aggregations
+# -----------------------------------
+silver_telemetry = (
+    df_telemetry.groupBy("vehicle_id")
+    .agg(
+        avg("battery_health").alias("avg_battery_health"),
+        avg("engine_temp").alias("avg_engine_temp"),
+        avg("speed").alias("avg_speed"),
+        max("warning_flag").alias("warning_detected")
+    )
+)
+
+# -----------------------------------
+# Trip aggregations
+# -----------------------------------
+silver_trips = (
+    df_trips.groupBy("vehicle_id")
+    .agg(
+        avg("distance_km").alias("avg_distance_km"),
+        avg("fuel_used").alias("avg_fuel_used"),
+        avg("brake_events").alias("avg_brake_events"),
+        count("trip_id").alias("trip_count")
+    )
+)
+
+# -----------------------------------
+# Final Silver table
+# -----------------------------------
+silver_final = (
+    silver_telemetry.join(
+        silver_trips,
+        on="vehicle_id",
+        how="left"
+    )
+)
+
+silver_final.write.mode("overwrite").saveAsTable(
+    "lakehouse_eat_catalog.silver.vehicle_health_features"
+)
