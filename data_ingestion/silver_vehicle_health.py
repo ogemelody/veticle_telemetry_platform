@@ -2,7 +2,7 @@
 
 from pyspark.sql.functions import avg, col, min, max
 
-df = spark.table("lakehouse_eat_catalog.bronze.vehicles")
+df = spark.table("lakehouse_eat_catalog.bronze.vehicle_telemetry")
 
 df_trip_info = spark.table("lakehouse_eat_catalog.bronze.vehicle_trips")
 
@@ -19,6 +19,6 @@ silver_trip_info = df.groupBy("vehicle_id").agg(
     avg("engine_temp").alias("avg_engine_temp")
 
 )
-df_with_avg = df.join(df_trip_info, on="vehicle_id", how="left")
+df_with_avg = silver_vehicle_prop.join(df_trip_info, on="vehicle_id", how="left")
 
 df_with_avg.write.mode("overwrite").saveAsTable("lakehouse_eat_catalog.silver.vehicle_health_features")
