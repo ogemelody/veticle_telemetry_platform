@@ -23,7 +23,7 @@ operational intelligence via Mosaic AI (Meta LLaMA 3.3 70B).
 
 ## 🚗 Use Cases in Automotive
  
-### 1. **Predictive Maintenance for Fleet Operators**
+#### 1. **Predictive Maintenance for Fleet Operators**
 Monitor thousands of vehicles in real-time. AI identifies which vehicles need maintenance before failure occurs, reducing costly downtime.
  
 **Example insight:**
