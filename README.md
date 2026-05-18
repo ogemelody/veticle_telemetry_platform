@@ -70,6 +70,48 @@ Real-world fleet systems (e.g. ZF Aftermarket, Bosch Connected Services) stream 
  
 **Architectural advantage:** Auto Loader + Delta Lake handles late arrivals, duplicates, and schema changes.
  
+## 🔧 Technical Stack
+ 
+| Component | Technology | Purpose |
+|---|---|---|
+| **Cloud** | Databricks (Free Edition → AWS/Azure) | Compute & orchestration |
+| **Data Lake** | Delta Lake on DBFS/ADLS Gen2 | ACID transactions, schema evolution |
+| **Ingestion** | Auto Loader (streaming) | Incremental file ingestion with checkpoint |
+| **Processing** | PySpark + SQL | ETL transformations |
+| **AI/ML** | Mosaic AI (Meta LLaMA 3.3 70B) | Per-vehicle insight generation |
+| **Governance** | Unity Catalog | Lineage, tags, ownership, PII masking |
+| **BI** | Databricks AIBI + Genie | Interactive dashboards + NLG |
+| **Version Control** | Git + GitHub | Code, documentation, reproducibility |
+
+
+## Key Metrics
+ 
+**Current demo state (33 vehicles):**
+- 33 total vehicles monitored
+- 15 GOOD, 9 WARNING, 9 CRITICAL
+- Average fleet health score: 81.71 / 100
+- Risk distribution: 45% GOOD, 27% WARNING, 27% CRITICAL
+
+**Production scale (automotive OEM with 100,000 vehicles):**
+- Billions of telemetry readings per day
+- Sub-second latency for critical alerts
+- AI insights generated per vehicle in <2 seconds
+- Dashboard refresh every 5 minutes
+- Data retention: 36 months of historical telemetry
+---
+##  Data Lineage
+ 
+**Full Bronze-to-Gold lineage tracked in Unity Catalog:**
+ 
+```
+bronze.vehicle_telemetry  ──────┐
+                                 ├──> silver.telemetry_agg ──┐
+bronze.vehicle_trips      ──────┤                             ├──> gold.fleet_kpis ──> gold.ai_fleet_monitoring
+                                 ├──> silver.trips_agg ────┤
+bronze.vehicle            ──────┴──> silver.vehicle_profile ─┘
+```
+
+
 
 
 
@@ -94,3 +136,21 @@ Real-world fleet systems (e.g. ZF Aftermarket, Bosch Connected Services) stream 
 - Schema evolution handling
 - Automotive telemetry modeling
 - Production-grade data pipeline design
+
+
+## 📄 License
+ 
+This project is provided as-is for portfolio and educational purposes.
+ 
+---
+ 
+## 👋 About
+ 
+**Melody Egwuchukwu** | Cloud Data Engineer | Germany  
+Building cloud data systems that solve real problems.  
+ 
+📍 GitHub: [@clouddatafriend](https://github.com/clouddatafriend)  
+🔗 LinkedIn: [Melody Egwuchukwu](https://linkedin.com/in/melody-egwuchukwu)  
+🌐 Web: [melodyegwuchukwu.com](https://melodyegwuchukwu.com)
+ 
+---
