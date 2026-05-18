@@ -1,13 +1,16 @@
 # 🚗 Vehicle Telemetry Platform
 
 ## Overview
-Automotive data platform built on Databricks Lakehouse architecture for fleet analytics and predictive maintenance.
+ AI-augmented data pipeline for fleet vehicle health monitoring and predictive maintenance recommendations using Databricks Lakehouse, Delta Lake, and Mosaic AI.
+
+![Dashboard](src/dashboard.png)
 
 ## Architecture
 - Databricks Autoloader ingestion (batch + streaming)
 - Medallion architecture (Bronze / Silver / Gold)
 - Real-time vehicle telemetry simulation
 - Fleet health scoring model
+
 
 ## Features
 - Historical trip simulation
