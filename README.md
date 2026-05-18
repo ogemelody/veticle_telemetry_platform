@@ -10,7 +10,7 @@
 This platform ingests simulated IoT vehicle telemetry, 
 processes it through a medallion architecture (Bronze → Silver → Gold),
 and generates per-vehicle maintenance recommendations using LLM-powered 
-operational intelligence via Mosaic AI (databricks-meta-llama-3-3-70b-instruct).
+operational intelligence via Mosaic AI ( Meta LLaMA 3.3 70B ).
 
 **In production, this pattern powers:**
 - Real-time fleet health monitoring for automotive OEMs and fleet operators.
@@ -19,11 +19,7 @@ operational intelligence via Mosaic AI (databricks-meta-llama-3-3-70b-instruct).
 - Risk classification and operational safety scoring.
 
 ## Architecture
-- Databricks Autoloader ingestion (batch + streaming)
-- Medallion architecture (Bronze / Silver / Gold)
-- Real-time vehicle telemetry simulation
-- Fleet health scoring model
-
+![architecture](src/vehicle_telemetry_architecture.png)
 
 ## Features
 - Historical trip simulation
