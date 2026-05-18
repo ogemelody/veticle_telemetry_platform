@@ -70,6 +70,8 @@ Real-world fleet systems (e.g. ZF Aftermarket, Bosch Connected Services) stream 
  
 **Architectural advantage:** Auto Loader + Delta Lake handles late arrivals, duplicates, and schema changes.
  
+
+---
 ## 🔧 Technical Stack
  
 | Component | Technology | Purpose |
@@ -112,7 +114,7 @@ bronze.vehicle            ──────┴──> silver.vehicle_profile �
 ```
 
 
-
+---
 ## Tech Stack
 - Databricks (Spark Structured Streaming)
 - Delta Lake
@@ -125,7 +127,7 @@ bronze.vehicle            ──────┴──> silver.vehicle_profile �
 - Automotive telemetry modeling
 - Production-grade data pipeline design
 
-
+---
 ## 📖 What I Learnt
  
 ### 1. **Schema Enforcement Catches Bugs Early**
@@ -177,7 +179,7 @@ In real OBD-II systems, CAN signals ARE the telemetry stream. They don't arrive 
 **Lesson:** Understand the data source before you model it. The best schema looks like the source data.
  
   
-
+---
 ##  Production Considerations
  
 For production deployment at scale (100k+ vehicles):
