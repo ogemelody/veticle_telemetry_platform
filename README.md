@@ -23,6 +23,7 @@ Check some of the architecture decisions I made based on the resources I had ava
 
 ## Architecture
 ![architecture](src/vehicle_telemetry_architecture.png)
+![catalog](src/catalog.png)
 
 ## 🚗 Use Cases in Automotive
  
