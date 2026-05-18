@@ -1,28 +1,5 @@
 
 
----
-
-## Table of Contents
-
-
-1. [Decision 1 — Data Ingestion: Why I Scrapped Azure](decision-1--data-ingestion-why-i-scrapped-azure)
-2. [Decision 3 — Bronze Layer: Auto Loader over Direct Reads](decision-3--bronze-layer-auto-loader-over-direct-reads)
-3. [Decision 4 — Trigger Strategy: availableNow vs Continuous](decision-4--trigger-strategy-availablenow-vs-continuous)
-4.  [Decision 5 — Silver Layer: Separate Tables over One Flat Table](#7-decision-5--silver-layer-separate-tables-over-one-flat-table)
-5. [Engineering Quality Decisions](#10-engineering-quality-decisions)
-    - [Z-Ordering](#z-ordering)
-    - [Null Handling](#null-handling)
-    - [Schema Enforcement](#schema-enforcement)
-    - [Duplicate Detection](#duplicate-detection)
-    - [Corrupted Telemetry Filtering](#corrupted-telemetry-filtering)
-    - [Outlier Validation](#outlier-validation)
-6.  [Unity Catalog: Lineage, Tags & Governance](#11-unity-catalog-lineage-tags--governance)
-7.  [What I Would Do Differently in Production](#12-what-i-would-do-differently-in-production)
-
----
-
-
-
 ##  Decision 1 — Data Ingestion: Why I Scrapped Azure
 
 ### What was planned
