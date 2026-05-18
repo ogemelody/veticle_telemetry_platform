@@ -31,7 +31,7 @@ Monitor thousands of vehicles in real-time. AI identifies which vehicles need ma
  
 **Impact:** Reduce unplanned maintenance from 30% to <5% of fleet workload.
  
----
+
  
 ### 2. **OEM Warranty & Recall Management**
 Aggregate telemetry across a vehicle model line. Detect systemic failures earlier (e.g., all Mercedes trucks showing brake pad wear > 85%).
@@ -49,21 +49,21 @@ Connect maintenance spend to telemetry signals. Build ROI models showing which p
 - Cost: €500/vehicle for quarterly coolant system flush
 - Benefit: Reduced engine failures (−€8,000 per failure)
 - ROI: 1600% for targeted high-risk fleet segments
----
+
  
 ### 4. **Driver Behaviour & Safety Scoring**
 Identify risky driving patterns (sustained high RPM, aggressive braking) correlated with vehicle failure and insurance claims.
  
 **Example:** Drivers in the top 10% for aggressive driving show 40% higher brake wear. Implement driver coaching program.
  
----
+
  
 ### 5. **Supply Chain & Parts Planning**
 Predict maintenance demand by part type. If 25% of fleet shows brake pad wear >80%, procurement knows to stock 250+ brake pads next month.
  
 **Example:** AI predicts battery failures in 40 vehicles over next 30 days → order 45 units, avoid stockouts.
  
----
+
  
 ### 6. **Connected Vehicle & Telematics Integration**
 Real-world fleet systems (e.g. ZF Aftermarket, Bosch Connected Services) stream live CAN bus data into this pipeline. Scale from 33 vehicles (demo) to 100,000+ vehicles with the same architecture.
