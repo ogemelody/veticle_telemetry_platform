@@ -17,6 +17,9 @@ operational intelligence via Mosaic AI (Meta LLaMA 3.3 70B).
 - Predictive maintenance alerting to reduce downtime and extend vehicle lifespan.
 - Cost attribution and ROI analysis for maintenance spend.
 - Risk classification and operational safety scoring.
+ 
+Check some of the architecture decisions I made based on the resources I had available [[architecture_decisions.md]](architecture_decisions.md)
+ 
 
 ## Architecture
 ![architecture](src/vehicle_telemetry_architecture.png)
