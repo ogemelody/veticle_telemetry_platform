@@ -149,8 +149,8 @@ This project is provided as-is for portfolio and educational purposes.
 **Melody Egwuchukwu** | Cloud Data Engineer | Germany  
 Building cloud data systems that solve real problems.  
  
-📍 GitHub: [@clouddatafriend](https://github.com/clouddatafriend)  
-🔗 LinkedIn: [Melody Egwuchukwu](https://linkedin.com/in/melody-egwuchukwu)  
+📍 GitHub: [@clouddatafriend](https://github.com/ogemelody)  
+🔗 LinkedIn: [Melody Egwuchukwu](https:www.linkedin.com/in/melodyegwuchukwu)  
 🌐 Web: [melodyegwuchukwu.com](https://melodyegwuchukwu.com)
  
 ---
