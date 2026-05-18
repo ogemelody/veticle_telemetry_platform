@@ -113,18 +113,6 @@ bronze.vehicle            ──────┴──> silver.vehicle_profile �
 
 
 
-
-
-
-
-
-## Features
-- Historical trip simulation
-- Real-time telemetry streaming (Databricks-native)
-- Bronze ingestion pipelines using Auto Loader
-- Silver layer feature engineering
-- Gold layer fleet KPI scoring
-
 ## Tech Stack
 - Databricks (Spark Structured Streaming)
 - Delta Lake
@@ -138,10 +126,72 @@ bronze.vehicle            ──────┴──> silver.vehicle_profile �
 - Production-grade data pipeline design
 
 
-## 📄 License
+## 📖 What I Learnt
  
-This project is provided as-is for portfolio and educational purposes.
+### 1. **Schema Enforcement Catches Bugs Early**
  
+Auto Loader's schema enforcement with `rescue` mode was my safety net. When a malformed CAN bus reading arrived (engine_temp = -999), the schema caught it and put it in `_rescued_data` instead of breaking the pipeline.
+ 
+
+ 
+### 2. **Spark Broadcast Joins Scale Better Than I Expected**
+ 
+I started pulling vehicle dimension data into Python arrays with `.collect()`. At 33 vehicles it worked fine. At production scale (100k vehicles), that driver node would OOM.
+ 
+The moment I switched to `broadcast(df_vehicle)`, the code was:
+- **Smaller** (one line hint vs 5 lines of Python manipulation)
+- **Faster** (no serialization, no driver bottleneck)
+- **Production-ready** (scales to any dimension size without code change)
+
+ 
+### 3. **LLM Insights are Commodity Now, but Pipeline Quality Matters**
+ 
+Mosaic AI's `AI_QUERY` with LLaMA generated maintenance recommendations in one SQL line. That was magic.
+But the magic only worked because the Gold data was clean. Bad data in → meaningless AI output. The engineering work was 95% data pipelines, 5% AI prompting.
+ 
+**Before learning:** I thought AI was the hard part.  
+**After:** I learned the hard part is getting trustworthy data to the AI.
+
+ 
+
+ 
+### 4. **Documentation is Part of the Engineering**
+ 
+The architecture decisions doc took 2 hours to write but becomes the #1 asset in interviews.
+ 
+Without it, I would have told the story verbally: "Yeah, I scrapped Azure because of a compute policy issue..."  
+With it, I showed decision-making, trade-off analysis, and production awareness.
+ 
+**Lesson:** Write the doc as you build. 
+ 
+
+ 
+### 5. **CAN Bus Signals Live in the Telemetry Stream, Not Separately**
+ 
+I almost created a separate Bronze table for CAN bus data. That would have been architecturally wrong.
+ 
+In real OBD-II systems, CAN signals ARE the telemetry stream. They don't arrive separately. Keeping them in `vehicle_telemetry` meant:
+- Correct cardinality (one telemetry row = one CAN frame snapshot)
+- Correct temporal alignment (all signals time-stamped together)
+- Correct production mapping (mirrors real device output)
+**Lesson:** Understand the data source before you model it. The best schema looks like the source data.
+ 
+  
+
+##  Production Considerations
+ 
+For production deployment at scale (100k+ vehicles):
+ 
+- **Dedicated Databricks workspace** with Premium tier + SPICE
+- **Lakehouse Monitoring** on Bronze + Silver for data quality alerts
+- **Auto-scaling clusters** (2–10 workers) vs serverless compute
+- **Scheduled Workflows** (every 5–60 minutes) vs continuous streaming
+- **Data retention policy** (raw Bronze: 7 days → Silver: 90 days → Gold: 36 months)
+- **Cost optimization:** Z-ordered tables, partition pruning, cached materialized views
+- **Secrets management:** Azure Key Vault / AWS Secrets Manager for API keys
+- **PII masking:** Mask driver names, phone numbers, vehicle plate number in Silver/Gold layers
+- **SLA monitoring:** Alert if insights are stale >5 minutes
+---
 ---
  
 ## 👋 About
@@ -149,7 +199,7 @@ This project is provided as-is for portfolio and educational purposes.
 **Melody Egwuchukwu** | Cloud Data Engineer | Germany  
 Building cloud data systems that solve real problems.  
  
-📍 GitHub: [@Melody GitHub](https://github.com/ogemelody)  
+📍 GitHub: [Melody GitHub](https://github.com/ogemelody)  
 🔗 LinkedIn: [Melody Egwuchukwu](https://www.linkedin.com/in/melodyegwuchukwu)  
 🌐 Web: [melodyegwuchukwu.com](https://melodyegwuchukwu.com)
  
