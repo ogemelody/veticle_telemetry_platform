@@ -40,7 +40,7 @@ Aggregate telemetry across a vehicle model line. Detect systemic failures earlie
  
 **Impact:** Identify safety issues before they reach customer complaints.
  
----
+
  
 ### 3. **Fleet Cost Attribution**
 Connect maintenance spend to telemetry signals. Build ROI models showing which preventive actions actually reduce overall costs.
